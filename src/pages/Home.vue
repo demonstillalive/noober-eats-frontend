@@ -1,7 +1,7 @@
 <template>
   <!-- Section 1 -->
   <div
-    class="hover-cursor frame-1"
+    class=" frame-1"
     :style="{ backgroundImage: `url(${frame1Bg})` }"
   >
     <img 
