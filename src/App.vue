@@ -33,10 +33,10 @@ onBeforeUnmount(() => {
 
 .custom-cursor {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 74px;
-  height: 74px;
+  top: 15px;
+  left: 5px;
+  width: 140px;
+  height: 140px;
   background: url("/src/assets/cursor.png") no-repeat center center;
   background-size: contain;
   pointer-events: none;
