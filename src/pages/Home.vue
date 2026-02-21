@@ -24,7 +24,17 @@
     <p style="font-size: 60px; color:#B9E5FD; text-align:center;">People of Indore,</p>
     <p style="font-size: 37px; color:#B9E5FD; text-align:center;">Tell us How Hungry you are.</p>
 
-    
+    <!-- Button 6,7,8 one per row -->
+    <div class="frame2-buttons-col">
+      <img
+        v-for="(b, i) in frame2Buttons"
+        :key="i"
+        :src="hoverIndex2 === i ? b.hover : b.normal"
+        class="frame2-btn"
+        @mouseenter="hoverIndex2 = i"
+        @mouseleave="hoverIndex2 = -1"
+      />
+    </div>
   </div>
 </template>
 
@@ -47,18 +57,20 @@ import button4h from "@/assets/hover-button1/button-h4.png";
 import button5 from "@/assets/hover-button1/button5.png";
 import button5h from "@/assets/hover-button1/button-h5.png";
 
+/* Frame 2 buttons */
+import button6 from "@/assets/hover-button2/button6.svg";
+import button6h from "@/assets/hover-button2/button-h6.png";
+import button7 from "@/assets/hover-button2/button7.svg";
+import button7h from "@/assets/hover-button2/button-h7.png";
+import button8 from "@/assets/hover-button2/button8.svg";
+import button8h from "@/assets/hover-button2/button-h8.png";
+
 /* Sounds for Frame 1 */
 import s1 from "@/assets/sounds/h1.wav";
 import s2 from "@/assets/sounds/h2.wav";
 import s3 from "@/assets/sounds/h3.wav";
 import s4 from "@/assets/sounds/h4.wav";
 import s5 from "@/assets/sounds/h5.wav";
-
-/* Frame 2 side images (example for button1 only – repeat for others) */
-import h1l1 from "@/assets/hover-side/h1-left1.png";
-import h1l2 from "@/assets/hover-side/h1-left2.png";
-import h1r1 from "@/assets/hover-side/h1-right1.png";
-import h1r2 from "@/assets/hover-side/h1-right2.png";
 
 const hoverIndex = ref(-1);
 const hoverIndex2 = ref(-1);
@@ -68,7 +80,7 @@ const sounds = [s1, s2, s3, s4, s5];
 let lastHover = -1;
 
 function onHover(i) {
-  if (lastHover === i) return;   // prevent sound spam
+  if (lastHover === i) return;
   lastHover = i;
   hoverIndex.value = i;
 
@@ -85,37 +97,10 @@ const banners = [
   { normal: button5, hover: button5h },
 ];
 
-const banners2 = [
-  {
-    normal: button1,
-    hover: button1h,
-    left: [h1l1, h1l2],
-    right: [h1r1, h1r2],
-  },
-  {
-    normal: button2,
-    hover: button2h,
-    left: [],
-    right: [],
-  },
-  {
-    normal: button3,
-    hover: button3h,
-    left: [],
-    right: [],
-  },
-  {
-    normal: button4,
-    hover: button4h,
-    left: [],
-    right: [],
-  },
-  {
-    normal: button5,
-    hover: button5h,
-    left: [],
-    right: [],
-  },
+const frame2Buttons = [
+  { normal: button6, hover: button6h },
+  { normal: button7, hover: button7h },
+  { normal: button8, hover: button8h },
 ];
 </script>
 
@@ -166,43 +151,23 @@ const banners2 = [
   transform: scale(1.08);
 }
 
-/* Frame 2 */
-.frame2-buttons {
+/* Frame 2 buttons */
+.frame2-buttons-col {
   margin-top: 60px;
   display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.frame2-btn-wrapper {
-  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
 }
 
 .frame2-btn {
-  height: 120px;
+  height: 130px;
+  width: auto;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
 }
 
 .frame2-btn:hover {
-  transform: scale(1.1);
-}
-
-.side-img {
-  position: absolute;
-  height: 80px;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: pop 0.25s ease;
-}
-
-.left.one { right: 110%; }
-.left.two { right: 170%; }
-.right.one { left: 110%; }
-.right.two { left: 170%; }
-
-@keyframes pop {
-  from { transform: translateY(-50%) scale(0.6); opacity: 0; }
-  to { transform: translateY(-50%) scale(1); opacity: 1; }
+  transform: scale(1.08);
 }
 </style>
