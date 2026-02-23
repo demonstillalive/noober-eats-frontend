@@ -35,16 +35,34 @@
     <p class="title-small">Tell us How Hungry you are.</p>
 
     <!-- Frame 2 hover buttons (vertical column) -->
-    <div class="frame2-buttons-col">
-      <img
-        v-for="(b, i) in frame2Buttons"
-        :key="i"
-        :src="hoverIndex2 === i ? b.hover : b.normal"
-        class="frame2-btn"
-        @mouseenter="onHover2(i)"
-        @mouseleave="onLeave2"
-      />
+    <!-- Frame 2 hover buttons with side images -->
+<div class="frame2-buttons-col">
+  <div
+    v-for="(b, i) in frame2Buttons"
+    :key="i"
+    class="frame2-btn-row"
+    @mouseenter="onHover2(i)"
+    @mouseleave="onLeave2"
+  >
+    <!-- Left side images (2 images) -->
+    <div class="side-images left">
+      <img :src="b.leftImages[0]" class="side-img" :class="{ visible: hoverIndex2 === i }" />
+      <img :src="b.leftImages[1]" class="side-img" :class="{ visible: hoverIndex2 === i }" />
     </div>
+
+    <!-- Main button -->
+    <img
+      :src="hoverIndex2 === i ? b.hover : b.normal"
+      class="frame2-btn"
+    />
+
+    <!-- Right side images (2 images) -->
+    <div class="side-images right">
+      <img :src="b.rightImages[0]" class="side-img" :class="{ visible: hoverIndex2 === i }" />
+      <img :src="b.rightImages[1]" class="side-img" :class="{ visible: hoverIndex2 === i }" />
+    </div>
+  </div>
+</div>
 
     <!-- ── Win A Table layered section ── -->
     <div class="layer-wrapper">
@@ -258,10 +276,42 @@ const banners = [
   { normal: button5, hover: button5h },
 ];
 
+// ── Import side images for each button ──────────────────────
+// Button 6 side images
+import b6left1  from "@/assets/hover-button2/b6-left1.png";
+import b6left2  from "@/assets/hover-button2/b6-left2.png";
+import b6right1 from "@/assets/hover-button2/b6-right1.png";
+import b6right2 from "@/assets/hover-button2/b6-right2.png";
+
+// Button 7 side images
+import b7left1  from "@/assets/hover-button2/b7-left1.png";
+import b7left2  from "@/assets/hover-button2/b7-left2.png";
+import b7right1 from "@/assets/hover-button2/b7-right1.png";
+import b7right2 from "@/assets/hover-button2/b7-right2.png";
+
+// Button 8 side images
+import b8left1  from "@/assets/hover-button2/b8-left1.png";
+import b8left2  from "@/assets/hover-button2/b8-left2.png";
+import b8right1 from "@/assets/hover-button2/b8-right1.png";
+import b8right2 from "@/assets/hover-button2/b8-right2.png";
+
+// Each button now carries its own set of 4 side images
 const frame2Buttons = [
-  { normal: button6, hover: button6h },
-  { normal: button7, hover: button7h },
-  { normal: button8, hover: button8h },
+  {
+    normal: button6, hover: button6h,
+    leftImages:  [b6left1,  b6left2],
+    rightImages: [b6right1, b6right2],
+  },
+  {
+    normal: button7, hover: button7h,
+    leftImages:  [b7left1,  b7left2],
+    rightImages: [b7right1, b7right2],
+  },
+  {
+    normal: button8, hover: button8h,
+    leftImages:  [b8left1,  b8left2],
+    rightImages: [b8right1, b8right2],
+  },
 ];
 </script>
 
@@ -504,6 +554,48 @@ const frame2Buttons = [
 }
 
 .text-btn:hover { text-decoration: underline; }
+
+
+
+/* Wrapper row for each button + its side images */
+.frame2-btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Left and right image groups */
+/* Left and right image groups — stacked vertically */
+.side-images {
+  display: flex;
+  flex-direction: column;  /* changed from row to column */
+  gap: 10px;
+  align-items: center;
+}
+
+/* Each side image — hidden by default, fades in on hover */
+.side-img {
+  height: 80px;
+  width: auto;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+/* Visible state triggered by .visible class */
+.side-img.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Mobile — hide side images on small screens to save space */
+@media (max-width: 768px) {
+  .side-images { display: none; }
+  .frame2-btn-row { justify-content: center; }
+}
 
 
 /* ============================================================
