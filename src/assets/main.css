@@ -1,3 +1,9 @@
+#app {
+  min-width: 320px;   /* allows mobile */
+  max-width: 1920px;  /* caps on ultrawide */
+  margin: 0 auto;
+  overflow-x: hidden; /* prevents horizontal scroll */
+}
 @font-face {
   font-family: "CatComic";
   src: url("@/assets/fonts/Cat Comic 400.ttf") format("truetype");

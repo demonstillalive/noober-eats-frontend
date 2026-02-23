@@ -593,7 +593,7 @@ const frame2Buttons = [
 
 /* Mobile — hide side images on small screens to save space */
 @media (max-width: 768px) {
-  .side-images { display: none; }
+  .side-images {  }
   .frame2-btn-row { justify-content: center; }
 }
 
@@ -648,6 +648,16 @@ const frame2Buttons = [
 }
 
 
+@media (max-width: 568px) {
+.top-layer-img{
+width:115%;
+heigh:255px;
+top:28%;
+}
+}
+
+
+
 /* ============================================================
    SMALL MOBILE  (≤ 480px)
    ============================================================ */
@@ -656,7 +666,8 @@ const frame2Buttons = [
   .banner-stack  { margin-top: 140px; }
   .frame2-btn    { height: 60px; }
   .solid-strip   { height: 1000px; }
-  .layer-content { top: 30%; }
+  .layer-content { top: 20%; }
+  .form-box { top:28%;}
 }
 
 </style>
